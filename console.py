@@ -129,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
         d = len(args)
         for j in range(1, d):
             # argd[j] = name="california"
-            param_list = args[j].split("=")  # ["name", "Californuia"]
+            param_list = args[j].split("=")  # ["name", "California"]
 
             if ('"' in param_list[1]):
                 p1 = param_list[1].strip('"')

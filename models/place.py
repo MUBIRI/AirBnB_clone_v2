@@ -21,10 +21,10 @@ class Place(BaseModel, Base):
 
     @property
     def cities(self):
-        '''returns the list of Review instances with place_id
+        """ Returns the list of Review instances with place_id
             equals the current Place.id
             FileStorage relationship between Place and Review
-        '''
+        """
         from models import storage
         related_reviews = []
 
