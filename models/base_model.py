@@ -40,7 +40,7 @@ class BaseModel:
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
-     def __str__(self):
+    def __str__(self):
         """Returns a string representation of the instance"""
         cls = (str(type(self)).split('.')[-1]).split('\'')[0]
         new_dict = self.__dict__.copy()
