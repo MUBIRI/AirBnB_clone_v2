@@ -13,10 +13,9 @@ class City(BaseModel):
     if storage_type == 'db':
         name = Column(String(128), nullable=False)
         state_id = Column(String(80), ForeignKey('states.id'), nullable=False)
-        
+
         state = relationship('State', back_populates='cities')
 
     else:
         state_id = ""
         name = ""
-

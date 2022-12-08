@@ -13,11 +13,11 @@ class BaseModel:
     id = Column(String(60), primary_key=True)
     created_at = Column(DateTime, nullable=False, default=(datetime.utcnom()))
     updated_at = Column(DateTime, nullable=False, default=(datetime.utcnom()))
-    
+
     def __init__(self, *args, **kwargs):
         """Create new or recrates base model instance from dictionary"""
         if kwargs == {}:
-            #from models import storage
+            # from models import storage
             self.id = str(uuid4())
             self.created_at = self.updated_at = datetime.now()
             storage.new(self)

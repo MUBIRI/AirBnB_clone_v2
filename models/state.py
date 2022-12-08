@@ -13,7 +13,7 @@ class State(BaseModel):
     if models.storage_type == 'db':
         name = Column(String(128), nullable=False)
         cities = relationship('City', cascade='all, delete, delete_child'
-                        back_populates='state')
+                              back_populates='state')
     else:
         name = ""
 
@@ -21,4 +21,3 @@ class State(BaseModel):
         def cities(self):
             cities = models.storage.all('City').values()
             return [city for city in cities if city.state_id == self.id]
-
