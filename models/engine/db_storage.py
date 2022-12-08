@@ -2,11 +2,17 @@
 from sqlalchemy import create_engine
 from os import getenv
 from models.base_models import Base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy.orm.scoping import scoped_session
+from models.state import State
+from models.city import City
+from models.user import User
+from models.place import Place
+from models.review import Review
+from models.amenity import Amenity
 
 
-classes = [User, State, City, amenity, Place, Review]
+classes = [User, State, City, Amenity, Place, Review]
 
 
 class DBStorage:
@@ -67,6 +73,8 @@ class DBStorage:
         """Deletes from the current database session obj if not None"""
         if obj:
             self.__session.delete(obj)
+        else:
+            pass
 
     def reload(self):
         Base.metadata.create_all(self.__engine)
