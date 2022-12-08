@@ -8,6 +8,7 @@ from sqlalchemy.orm.scoping import scoped_session
 
 classes = [User, State, City, amenity, Place, Review]
 
+
 class DBStorage:
     """ DB Storage engine"""
     __engine = None
@@ -22,7 +23,7 @@ class DBStorage:
         db = detenv('HBNB_MYSQL_DB')
         env = getenv('HBNB_ENV')
 
-        url =f'mysql+mysqldb://{user}:{pwd}@{host}/{db}'
+        url = f'mysql+mysqldb://{user}:{pwd}@{host}/{db}'
 
         self.__engine = create_engine(url, pool_pre_ping=True)
 
@@ -39,7 +40,7 @@ class DBStorage:
                 for obj in list_of_objs:
                     key = obj.__class__.__name__ + '.' + obj.id
                     dict_of_objects[key] = obj
-            
+
             return dict_of_objects
 
         cls = eval(cls) if type(cls) is str else cls
@@ -58,7 +59,7 @@ class DBStorage:
         """Adds the object to the current database session"""
         self.__session.add(obj)
 
-    def save(self:):
+    def save(self):
         """Commits all changes of the current database session"""
         self.__session.commit()
 
@@ -74,4 +75,3 @@ class DBStorage:
         Session = scoped_session(session)
 
         self.__session = Session()
-
