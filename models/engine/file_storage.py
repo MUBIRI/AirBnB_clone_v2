@@ -14,12 +14,10 @@ class FileStorage:
             return FileStorage.__objects
         new_dict = {}
         for key, value in FileStorage.__objects.items():
-            # if type(value) == cls:
-            # san_franc -> san_franc.__class__ = City
             if (value.__class__ == cls):
                 new_dict[key] = value
-        return (new_dict)
-
+        return new_dict
+    
     def new(self, obj):
         """Adds new object to storage dictionary"""
         self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
@@ -61,6 +59,7 @@ class FileStorage:
         """Method to delete class"""
         if (obj is None):
             pass
-        if (obj in FileStorage.__objects.values()): # Returns a list of values in __object
+
+        if (obj in FileStorage.__objects): # Returns list of values in __object
             key = obj.__class__.__name__ + "." + obj.id
-            del (FileStorage.__objects[key])
+            del(__objects[key])
