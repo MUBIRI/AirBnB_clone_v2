@@ -26,18 +26,20 @@ class BaseModel:
         else:
             for k, v in kwargs.items():
                 if (k == 'updated_at'):
-                    kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
+                    date_strp = datetime.strptime(kwargs['updated_at'],
+                                                  '%Y-%m-%dT%H:%M:%S.%f')
+                    kwargs['updated_at'] = date_strp
                 if (k == 'created_at'):
-                    kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
+                    date_strp2 = datetime.strptime(kwargs['created_at'],
+                                                   '%Y-%m-%dT%H:%M:%S.%f')
+                    kwargs['created_at'] = date_strp2
                 if (k == '__class__'):
                     del kwargs['__class__']
             if 'id' not in kwargs.keys():
                 self.id = str(uuid.uuid4())
             self.__dict__.update(kwargs)
-            #for key, value in kwargs.items():
-             #   setattr(self, key, value)
+            # for key, value in kwargs.items():
+            # setattr(self, key, value)
 
     def __str__(self):
         """Returns a string representation of the instance"""

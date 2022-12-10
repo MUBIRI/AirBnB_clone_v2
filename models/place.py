@@ -20,12 +20,14 @@ class Place(BaseModel, Base):
     longitude = Column(Float)
     reviews = relationship('Review', cascade='delete', backref='place')
 
-    place_amenity = Table('place_amenity', Base.metadata,
-            Column('place_id', ForeignKey('places.id'), primary_key=True),
-            Column('amenity_id', ForeignKey('amenities.id'), primary_key=True))
+    place_amenity = Table('place_amenity', Base.metadata, Column('place_id',
+                          ForeignKey('places.id'), primary_key=True),
+                          Column('amenity_id', ForeignKey('amenities.id'),
+                                 primary_key=True))
 
-    #if getenv("HBNB_TYPE_STORAGE") == 'db':
-    amenities = relationship('Amenity', secondary=place_amenity, viewonly=False)
+    # if getenv("HBNB_TYPE_STORAGE") == 'db':
+    amenities = relationship('Amenity', secondary=place_amenity,
+                             viewonly=False)
 
     @property
     def cities(self):

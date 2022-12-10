@@ -6,14 +6,14 @@ from models.base_model import Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
+
 class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
     # cities = relationship('City')
     cities = relationship('City', cascade="all, delete", backref='state')
-   # user = relationship("User", back_populates="addresses")
-
+    # user = relationship("User", back_populates="addresses")
 
     @property
     def cities(self):
@@ -25,9 +25,9 @@ class State(BaseModel, Base):
         from models import storage
         related_cities = []
 
-        cities = storage.all(City).items() # gets the entire storage- a dictionary
-        for city in cities.values(): # cities.value returns list of the city objects
-            if city.state_id == self.id: # if the object.state_id == self.id
-                related_cities.append(city) # append to the cities list
+        cities = storage.all(City).items()  # gets the entire storage- a dict.
+        for city in cities.values():  # cities.value returns city objects list
+            if city.state_id == self.id:  # if the object.state_id == self.id
+                related_cities.append(city)  # append to the cities list
         return related_cities
     # state = relationship('State')
